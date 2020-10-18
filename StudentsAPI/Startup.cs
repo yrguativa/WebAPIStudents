@@ -29,9 +29,20 @@ namespace StudentsAPI
         {
             services.AddControllers();
 
+            // Add service and create Policy with options
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                       builder => builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+                );
+            });
+
             // Entity Framework 
             services.AddDbContext<DataBaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +52,9 @@ namespace StudentsAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // global policy - assign here or on each controller
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 

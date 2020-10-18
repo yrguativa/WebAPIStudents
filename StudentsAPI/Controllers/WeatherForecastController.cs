@@ -35,5 +35,14 @@ namespace StudentsAPI.Controllers
             })
             .ToArray();
         }
+
+
+        // POST: api/Subjects       
+        [HttpPost]
+        public ActionResult Post([FromBody] WeatherForecast subject)
+        {
+           return Ok(subject);
+        }
+
     }
 }
