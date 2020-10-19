@@ -15,6 +15,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StudentsAPI.Data\StudentsAPI.Data.csproj" />
+    <ProjectReference Include="..\StudentsAPI.Services\StudentsAPI.Services.csproj" />
+    <ProjectReference Include="..\StudentsAPI.Models\StudentsAPI.Models.csproj" />
   </ItemGroup>
 
 
