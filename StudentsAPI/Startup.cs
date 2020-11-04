@@ -36,7 +36,9 @@ namespace StudentsAPI
 
             // Entity Framework 
             services.AddDbContext<DataBaseContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+               options.UseInMemoryDatabase(databaseName: "StudentsInterRapidisimo"));
+            //services.AddDbContext<DataBaseContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //Dependencies (IoC)
             services.AddTransient<IStudentService, StudentService>();

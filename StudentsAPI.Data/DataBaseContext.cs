@@ -14,15 +14,16 @@ namespace StudentsAPI.Data
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<StudentSubject>()
-                .HasKey(ab => new
-                {
+                .HasKey(ab => new {
                     ab.StudentId,
                     ab.SubjectId
-            });
+                });          
+           
         }
     }
 }
