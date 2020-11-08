@@ -7,6 +7,9 @@ using Microsoft.Extensions.Hosting;
 using StudentsAPI.Data;
 using StudentsAPI.Services.Implementacions;
 using StudentsAPI.Services.Interfaces;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace StudentsAPI
 {
@@ -44,6 +47,14 @@ namespace StudentsAPI
             services.AddTransient<IStudentService, StudentService>();
 
             services.AddTransient<ISubjectService, SubjectService>();
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c => {
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +67,20 @@ namespace StudentsAPI
 
             // global policy - assign here or on each controller
             app.UseCors("CorsPolicy");
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger(c =>
+            {
+                c.SerializeAsV2 = true;
+            });
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {  
+                c.SwaggerEndpoint("./swagger/v1/swagger.json", $"{Assembly.GetExecutingAssembly().GetName().Name} V{Assembly.GetExecutingAssembly().GetName().Version}");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 

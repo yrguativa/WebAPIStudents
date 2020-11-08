@@ -7,6 +7,9 @@ using StudentsAPI.Services.Interfaces;
 
 namespace StudentsAPI.Controllers
 {
+    /// <summary>
+    /// Controller for actions subjects
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class SubjectsController : ControllerBase
@@ -18,7 +21,10 @@ namespace StudentsAPI.Controllers
             SubjectService = service;
         }
 
-        // GET: api/Subjects
+        /// <summary>
+        /// Get all subjects
+        /// </summary>
+        /// <returns>Enumerable of SubjectModel</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SubjectModel>>> GetSubjects()
         {
@@ -32,7 +38,11 @@ namespace StudentsAPI.Controllers
             }
         }
 
-        // GET: api/Subjects/5
+        /// <summary>
+        /// Get subject by id
+        /// </summary>
+        /// <param name="id">Id of register</param>
+        /// <returns>SubjectModel</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<SubjectModel>> GetSubject(int id)
         {
@@ -54,7 +64,11 @@ namespace StudentsAPI.Controllers
 
         }
 
-        // POST: api/Subjects       
+        /// <summary>
+        /// Create a new register of subject 
+        /// </summary>
+        /// <param name="subject">SubjectModel</param>
+        /// <returns>Id of register</returns>   
         [HttpPost]
         public async Task<ActionResult<int>> PostSubject([FromBody] SubjectModel subject)
         {
@@ -68,7 +82,12 @@ namespace StudentsAPI.Controllers
             }
         }
 
-        // PUT: api/Subjects
+        /// <summary>
+        /// Update a subject
+        /// </summary>
+        /// <param name="id">Id of register for update</param>
+        /// <param name="subject">SubjectModel</param>
+        /// <returns>Id of register</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSubject(int id, [FromBody] SubjectModel subject)
         {

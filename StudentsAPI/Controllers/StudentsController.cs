@@ -7,18 +7,23 @@ using StudentsAPI.Services.Interfaces;
 
 namespace StudentsAPI.Controllers
 {
+    /// <summary>
+    /// Controller for endpoints the actions Student
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class StudentsController : ControllerBase
     {
-
         private readonly IStudentService StudentService;
         public StudentsController(IStudentService service)
         {
             StudentService = service;
         }
 
-        // GET: api/Students
+        /// <summary>
+        /// Get all students
+        /// </summary>
+        /// <returns>Enumerable of StudentModel</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<StudentModel>>> GetStudents()
         {
@@ -32,7 +37,11 @@ namespace StudentsAPI.Controllers
             }
         }
 
-        // GET: api/Students/5
+        /// <summary>
+        /// Get student by id
+        /// </summary>
+        /// <param name="id">Id of register</param>
+        /// <returns>StudentModel</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<StudentModel>> GetStudent(int id)
         {
@@ -54,9 +63,11 @@ namespace StudentsAPI.Controllers
 
         }
 
-        // POST: api/Students
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        /// <summary>
+        /// Create a new register of student 
+        /// </summary>
+        /// <param name="student">StudentModel</param>
+        /// <returns>Id of register</returns>
         [HttpPost]
         public async Task<ActionResult<int>> PostStudent([FromBody] StudentModel student)
         {
@@ -70,6 +81,12 @@ namespace StudentsAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Update a student
+        /// </summary>
+        /// <param name="id">Id of register for update</param>
+        /// <param name="student">StudentModel</param>
+        /// <returns>Id of register</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutStudent(int id, [FromBody] StudentModel student)
         {
@@ -80,7 +97,7 @@ namespace StudentsAPI.Controllers
                     return BadRequest();
                 }
 
-                await StudentService.UpdateStudent(id,student);
+                await StudentService.UpdateStudent(id, student);
             }
             catch (Exception ex)
             {

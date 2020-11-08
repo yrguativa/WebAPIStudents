@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StudentsAPI</name>
+    </assembly>
+    <members>
+        <!-- Badly formed XML comment ignored for member "M:StudentsAPI.Controllers.StudentsController.GetStudents" -->
+        <member name="M:StudentsAPI.Controllers.StudentsController.GetStudent(System.Int32)">
+            <summary>
+            Get student by id
+            </summary>
+            <param name="id">Id of register</param>
+            <returns>StudentModel</returns>
+        </member>
+        <member name="M:StudentsAPI.Controllers.StudentsController.PostStudent(StudentsAPI.Models.StudentModel)">
+            <summary>
+            Create a new register of student 
+            </summary>
+            <param name="student">StudentModel</param>
+            <returns>Id of register</returns>
+        </member>
+        <member name="M:StudentsAPI.Controllers.StudentsController.PutStudent(System.Int32,StudentsAPI.Models.StudentModel)">
+            <summary>
+            Update a student
+            </summary>
+            <param name="id">Id of register for update</param>
+            <param name="student">StudentModel</param>
+            <returns>Id of register</returns>
+        </member>
+    </members>
+</doc>
