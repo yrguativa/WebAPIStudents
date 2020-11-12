@@ -15,6 +15,10 @@ namespace StudentsAPI.Controllers
     public class StudentsController : ControllerBase
     {
         private readonly IStudentService StudentService;
+        /// <summary>
+        /// *Controller for endpoints the actions Student
+        /// </summary>
+        /// <param name="service"></param>
         public StudentsController(IStudentService service)
         {
             StudentService = service;
@@ -28,8 +32,8 @@ namespace StudentsAPI.Controllers
         public async Task<ActionResult<IEnumerable<StudentModel>>> GetStudents()
         {
             try
-            {
-                return await StudentService.GetStudents();
+            {             
+                return Ok(await StudentService.GetStudents());
             }
             catch (Exception ex)
             {
@@ -54,7 +58,7 @@ namespace StudentsAPI.Controllers
                     return NotFound();
                 }
 
-                return student;
+                return Ok(student);
             }
             catch (Exception ex)
             {
@@ -73,7 +77,7 @@ namespace StudentsAPI.Controllers
         {
             try
             {
-                return await StudentService.CreateStudent(student);
+                return Ok(await StudentService.CreateStudent(student));
             }
             catch (Exception ex)
             {
@@ -98,6 +102,8 @@ namespace StudentsAPI.Controllers
                 }
 
                 await StudentService.UpdateStudent(id, student);
+
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -112,7 +118,6 @@ namespace StudentsAPI.Controllers
             }
 
             return NoContent();
-
         }
     }
 }
