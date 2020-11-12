@@ -1,5 +1,6 @@
 ﻿using StudentsAPI.Models;
 using StudentsAPI.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,24 +9,24 @@ namespace StudentsAPI.xUnitTest.Students
 {
     public class StudentServiceFake : IStudentService
     {
-        private readonly List<StudentModel> students;
+        private readonly List<StudentModel> Students;
         public StudentServiceFake()
         {
-            students = new List<StudentModel>()
+            Students = new List<StudentModel>()
             {
                 new StudentModel() {
                     Id = 1,
-                    Name = "Orange Juice",
+                    Name = "Camilo Ramirez ",
                     Identification="789456"
                 },
                 new StudentModel() {
                     Id = 2,
-                    Name = "Diary Milk",
+                    Name = "Jorge Cano",
                     Identification="123456"
                 },
                 new StudentModel() {
                     Id = 3,
-                    Name = "Frozen Pizza",
+                    Name = "Fernando Herrera",
                     Identification="654321"
                 }
             };
@@ -33,25 +34,30 @@ namespace StudentsAPI.xUnitTest.Students
 
         public Task<List<StudentModel>> GetStudents()
         {
-            return Task.Run(() => students);
+            return Task.Run(() => Students);
         }
 
         public Task<StudentModel> GetStudent(int id)
         {
-            return Task.Run(() => students.Where(a => a.Id == id).FirstOrDefault());
+            return Task.Run(() => Students.Where(a => a.Id == id).FirstOrDefault());
         }
 
         public Task<int> CreateStudent(StudentModel model)
         {
-            model.Id = 4;
-            students.Add(model);
+            model.Id = 5;
+            Students.Add(model);
             return Task.Run(() => model.Id);
         }
 
         public Task UpdateStudent(int id, StudentModel student)
         {
+            var studentFound = Students.FirstOrDefault(s => s.Id == id);
+            if (studentFound == null)            
+            {
+                throw new Exception("NotFound");
+            }
             student.Id = 4;
-            students.Add(student);
+            Students.Add(student);
             return Task.Run(() => { });
         }
     }

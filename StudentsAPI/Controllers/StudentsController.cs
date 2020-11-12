@@ -77,6 +77,10 @@ namespace StudentsAPI.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
                 return Ok(await StudentService.CreateStudent(student));
             }
             catch (Exception ex)
@@ -98,12 +102,17 @@ namespace StudentsAPI.Controllers
             {
                 if (id != student.Id)
                 {
-                    return BadRequest();
+                    return BadRequest(id);
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
                 }
 
                 await StudentService.UpdateStudent(id, student);
 
-                return Ok();
+                return NoContent();
             }
             catch (Exception ex)
             {
@@ -116,8 +125,6 @@ namespace StudentsAPI.Controllers
                     return BadRequest(ex);
                 }
             }
-
-            return NoContent();
         }
     }
 }

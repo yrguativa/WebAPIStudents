@@ -43,9 +43,9 @@ namespace StudentsAPI.Services.Implementacions
                                 })
                                 .ToListAsync();
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
         
@@ -74,10 +74,9 @@ namespace StudentsAPI.Services.Implementacions
                     })
                     .FirstOrDefaultAsync(s => s.Id == id);
             }
-            catch (Exception ex)
+            catch
             {
-
-                throw ex;
+                throw;
             }           
         }
 
@@ -95,9 +94,9 @@ namespace StudentsAPI.Services.Implementacions
 
                 return student.Id;
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -126,9 +125,9 @@ namespace StudentsAPI.Services.Implementacions
                 
                 await _context.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw ;
             }            
         }       
     }
