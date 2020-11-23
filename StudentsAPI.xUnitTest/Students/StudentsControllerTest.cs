@@ -8,11 +8,11 @@ using Xunit;
 
 namespace StudentsAPI.xUnitTest.Students
 {
-    public class StudentServiceTest
+    public class StudentsControllerTest
     {
         StudentsController studentsController;
         IStudentService _service;
-        public StudentServiceTest()
+        public StudentsControllerTest()
         {
             _service = new StudentServiceFake();
             studentsController = new StudentsController(_service);

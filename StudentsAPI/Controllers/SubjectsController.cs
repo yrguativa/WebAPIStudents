@@ -30,7 +30,7 @@ namespace StudentsAPI.Controllers
         {
             try
             {
-                return await SubjectService.GetSubjects();
+                return Ok(await SubjectService.GetSubjects());
             }
             catch (Exception ex)
             {
@@ -55,7 +55,7 @@ namespace StudentsAPI.Controllers
                     return NotFound();
                 }
 
-                return subjects;
+                return Ok(subjects);
             }
             catch (Exception ex)
             {
@@ -74,7 +74,12 @@ namespace StudentsAPI.Controllers
         {
             try
             {
-                return await SubjectService.CreateSubject(subject);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                return Ok(await SubjectService.CreateSubject(subject));
             }
             catch (Exception ex)
             {
@@ -95,10 +100,17 @@ namespace StudentsAPI.Controllers
             {
                 if (id != subject.Id)
                 {
-                    return BadRequest();
+                    return BadRequest(id);
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
                 }
 
                 await SubjectService.UpdateSubject(id, subject);
+
+                return NoContent();
             }
             catch (Exception ex)
             {
@@ -111,9 +123,6 @@ namespace StudentsAPI.Controllers
                     return BadRequest(ex);
                 }
             }
-
-            return NoContent();
-
         }
     }
 }
