@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StudentsAPI.Controllers;
-using StudentsAPI.Models;
-using StudentsAPI.Services.Interfaces;
+using StudentsAPI.Services.Students.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;

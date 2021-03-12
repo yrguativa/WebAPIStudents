@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudentsAPI.Data;
-using StudentsAPI.Data.Entities;
-using StudentsAPI.Models;
-using StudentsAPI.Services.Interfaces;
+using StudentsAPI.Data.Students;
+using StudentsAPI.Models.Students;
+using StudentsAPI.Services.Students.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StudentsAPI.Services.Implementacions
+namespace StudentsAPI.Services.Students.Implementacions
 {
     public class SubjectService : ISubjectService
     {
@@ -45,7 +45,7 @@ namespace StudentsAPI.Services.Implementacions
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
         
@@ -77,7 +77,7 @@ namespace StudentsAPI.Services.Implementacions
             catch (Exception ex)
             {
 
-                throw ex;
+                throw;
             }           
         }
 
@@ -96,9 +96,9 @@ namespace StudentsAPI.Services.Implementacions
 
                 return subject.Id;
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -120,7 +120,7 @@ namespace StudentsAPI.Services.Implementacions
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }            
         }       
     }

@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StudentsAPI.Data.Entities;
 using StudentsAPI.Data;
-using StudentsAPI.Models;
-using StudentsAPI.Services.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using StudentsAPI.Services.Students.Interfaces;
+using StudentsAPI.Models.Students;
+using StudentsAPI.Data.Students;
 
-namespace StudentsAPI.Services.Implementacions
+namespace StudentsAPI.Services.Students.Implementacions
 {
     public class StudentService : IStudentService
     {

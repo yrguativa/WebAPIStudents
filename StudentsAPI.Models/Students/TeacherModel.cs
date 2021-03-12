@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace StudentsAPI.Models
+﻿namespace StudentsAPI.Models.Students
 {
     public class TeacherModel
     {

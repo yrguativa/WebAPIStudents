@@ -1,17 +1,51 @@
-﻿using StudentsAPI.Data.Entities;
-using System;
+﻿using Microsoft.AspNetCore.Identity;
+using StudentsAPI.Data.Security;
+using StudentsAPI.Data.Students;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 
 namespace StudentsAPI.Data
 {
     public class DataSeeder
     {
-        public static void SeedCountries(DataBaseContext context)
-        {
-            //Seeding Data
+        public static void SeedData(DataBaseContext context, UserManager<User> userManager, RoleManager<IdentityRole> rolManager)
+        {            
+            string[] roleNames = { "Admin" };
+            foreach (var roleName in roleNames)
+            {
+                if (rolManager.FindByNameAsync(roleName).Result == null)
+                {
+                    rolManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+
+            if (userManager.FindByEmailAsync("admin@xyz.com").Result == null)
+            {
+                var user = new User
+                {
+                    UserName = "admin@xyz.com",
+                    Email = "admin@xyz.com"
+                };
+
+                IdentityResult result = userManager.CreateAsync(user, "Adm123456.").Result;
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "Admin").Wait();
+                }
+            }
+
+            if (userManager.FindByEmailAsync("abc@xyz.com").Result == null)
+            {               
+                var user = new User
+                {
+                    UserName = "abc@xyz.com",
+                    Email = "abc@xyz.com"
+                };
+                _ = userManager.CreateAsync(user, "Abc123456.").Result;
+            }
+
+
             if (!context.Teachers.Any())
             {
                 var teachers = new List<Teacher>() {

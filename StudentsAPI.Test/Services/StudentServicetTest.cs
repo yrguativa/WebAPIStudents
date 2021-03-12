@@ -1,9 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StudentsAPI.Services.Interfaces;
-using StudentsAPI.Services.Implementacions;
-using StudentsAPI.Models;
+using StudentsAPI.Models.Students;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace StudentsAPI.Test
 {

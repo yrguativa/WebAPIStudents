@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using StudentsAPI.Models;
-using StudentsAPI.Services.Interfaces;
+using StudentsAPI.Models.Students;
+using StudentsAPI.Services.Students.Interfaces;
 
 namespace StudentsAPI.Controllers
 {
@@ -12,6 +13,7 @@ namespace StudentsAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SubjectsController : ControllerBase
     {
 

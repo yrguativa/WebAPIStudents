@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using StudentsAPI.Data.Entities;
+using StudentsAPI.Data.Security;
+using StudentsAPI.Data.Students;
 
 namespace StudentsAPI.Data
 {
-    public class DataBaseContext : DbContext
+    public class DataBaseContext : IdentityDbContext<User>
     {
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
         {
@@ -18,12 +19,14 @@ namespace StudentsAPI.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());            
+
             modelBuilder.Entity<StudentSubject>()
                 .HasKey(ab => new {
                     ab.StudentId,
                     ab.SubjectId
-                });          
-           
+                });
         }
     }
 }

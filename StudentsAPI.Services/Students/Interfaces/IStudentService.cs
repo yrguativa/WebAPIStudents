@@ -1,8 +1,8 @@
-﻿using StudentsAPI.Models;
+﻿using StudentsAPI.Models.Students;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace StudentsAPI.Services.Interfaces
+namespace StudentsAPI.Services.Students.Interfaces
 {
     public interface IStudentService
     {
